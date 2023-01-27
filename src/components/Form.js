@@ -1,10 +1,18 @@
 import React from "react";
 
-function Form({ linkTitle, setLinkTitle, link, setLink, handleSubmit }) {
+function Form({
+  linkTitle,
+  setLinkTitle,
+  link,
+  setLink,
+  handleSubmit,
+  ClearAll,
+}) {
   return (
-    <div className="mt-5">
+    <div className="mt-10">
       <form action="submit" onSubmit={handleSubmit}>
         <input
+          className="h-10"
           type="text"
           required
           placeholder="URL"
@@ -12,6 +20,7 @@ function Form({ linkTitle, setLinkTitle, link, setLink, handleSubmit }) {
           onChange={(e) => setLink(e.target.value)}
         />
         <input
+          className="h-10"
           type="text"
           required
           placeholder="Title"
@@ -26,6 +35,8 @@ function Form({ linkTitle, setLinkTitle, link, setLink, handleSubmit }) {
           Add
         </button>
       </form>
+
+      <button onClick={ClearAll}>Delete All</button>
     </div>
   );
 }

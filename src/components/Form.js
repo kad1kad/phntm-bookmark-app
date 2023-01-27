@@ -1,29 +1,25 @@
 import React from "react";
 
-function Form({ linkTitle, setLinkTitle, link, setLink }) {
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    console.log(link, linkTitle);
-  }
-
+function Form({ linkTitle, setLinkTitle, link, setLink, handleSubmit }) {
   return (
     <div>
-      <form action="submit" onClick={handleSubmit}>
+      <form action="submit" onSubmit={handleSubmit}>
         <input
           type="text"
+          required
           placeholder="URL"
           value={link}
           onChange={(e) => setLink(e.target.value)}
         />
         <input
           type="text"
+          required
           placeholder="Title"
           value={linkTitle}
           onChange={(e) => setLinkTitle(e.target.value)}
         />
 
-        <button type="submit">Submit</button>
+        <button type="submit">Add</button>
       </form>
     </div>
   );

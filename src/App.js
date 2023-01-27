@@ -1,3 +1,4 @@
+import isReachable from "is-reachable";
 import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import LinkList from "./components/LinkList";
@@ -8,14 +9,20 @@ function App() {
   const [linkTitle, setLinkTitle] = useState("");
   const [linkArr, setLinkArr] = useState([]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-
-    setLinkArr((prevLinkArr) => [...prevLinkArr, { link, linkTitle }]);
-    setLink("");
-    setLinkTitle("");
-
-    console.log("Form Submitted");
+    try {
+      if (await isReachable(link)) {
+        setLinkArr((prevLinkArr) => [...prevLinkArr, { link, linkTitle }]);
+        setLink("");
+        setLinkTitle("");
+      } else {
+        throw new Error(`Error: ${link} is not reachable.`);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Invalid link. Please enter a valid link.");
+    }
   }
 
   useEffect(() => {

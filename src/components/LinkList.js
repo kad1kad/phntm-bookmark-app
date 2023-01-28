@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import LinkItem from "./LinkItem";
 
-function LinkList({ linkArr, onRemove, setLinkArr }) {
+function LinkList({ linkArr, onRemove }) {
   // Re-render when linkArr changes
   useEffect(() => {
     console.log("Link list updated");
@@ -9,7 +9,14 @@ function LinkList({ linkArr, onRemove, setLinkArr }) {
 
   return (
     <div>
-      <LinkItem linkArr={linkArr} onRemove={onRemove} />
+      {linkArr.map((link, index) => (
+        <LinkItem
+          linkArr={linkArr}
+          onRemove={onRemove}
+          link={link}
+          index={index}
+        />
+      ))}
     </div>
   );
 }

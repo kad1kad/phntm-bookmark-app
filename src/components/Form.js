@@ -10,9 +10,13 @@ function Form({
 }) {
   return (
     <div className="mt-10">
-      <form action="submit" onSubmit={handleSubmit}>
+      <form
+        className="flex justify-between"
+        action="submit"
+        onSubmit={handleSubmit}
+      >
         <input
-          className="h-10"
+          className="h-10 w-[30%] mr-2 pl-1 border-gray-100 border-2 rounded-2xl placeholder:text-sm"
           type="text"
           required
           placeholder="URL"
@@ -20,7 +24,7 @@ function Form({
           onChange={(e) => setLink(e.target.value)}
         />
         <input
-          className="h-10"
+          className="h-10 w-[30%] border-gray-100 pl-1  border-2 rounded-2xl placeholder:text-sm"
           type="text"
           required
           placeholder="Title"
@@ -29,14 +33,14 @@ function Form({
         />
 
         <button
-          className="bg-slate-900 text-slate-50 font-light tracking-wider w-28 h-10 rounded-3xl"
+          className="bg-slate-900 text-slate-50 font-light tracking-wider w-[33%] h-10 rounded-3xl"
           type="submit"
         >
           Add
         </button>
       </form>
 
-      <button onClick={ClearAll}>Delete All</button>
+      {/* <button onClick={ClearAll}>Delete All</button> */}
     </div>
   );
 }

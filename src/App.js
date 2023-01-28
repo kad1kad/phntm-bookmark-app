@@ -14,11 +14,11 @@ function App() {
     setLinkArr([]);
   }
 
-  const onRemove = (index) => {
-    // Remove link from array
-    const newLinkArr = linkArr.filter((link, i) => i !== index);
-    setLinkArr(newLinkArr);
-  };
+  // const onRemove = (index) => {
+  //   // Remove link from array
+  //   const newLinkArr = linkArr.filter((link, i) => i !== index);
+  //   setLinkArr(newLinkArr);
+  // };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -43,7 +43,7 @@ function App() {
   }
 
   return (
-    <div className="p-5 relative h-[100%] max-w-[60rem] m-auto">
+    <div className="p-5 relative h-screen max-w-[60rem] m-auto">
       <h1 className="text-slate-800 text-2xl font-bold tracking-wide">
         Bookmark it.
       </h1>
@@ -59,7 +59,7 @@ function App() {
         ClearAll={ClearAll}
       />
 
-      <LinkList onRemove={onRemove} setLinkArr={setLinkArr} linkArr={linkArr} />
+      <LinkList setLinkArr={setLinkArr} linkArr={linkArr} />
     </div>
   );
 }

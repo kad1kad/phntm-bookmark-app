@@ -1,5 +1,5 @@
 import isReachable from "is-reachable";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Form from "./components/Form";
 import LinkList from "./components/LinkList";
 
@@ -25,7 +25,10 @@ function App() {
     // Check if link is reachable
     try {
       if (await isReachable(link)) {
-        setLinkArr((prevLinkArr) => [...prevLinkArr, { link, linkTitle }]);
+        setLinkArr((prevLinkArr) => [
+          ...prevLinkArr,
+          { link: `//${link}`, linkTitle },
+        ]);
         setError("");
         setLink("");
         setLinkTitle("");
@@ -39,12 +42,8 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    console.log(linkArr);
-  }, [linkArr]);
-
   return (
-    <div className="p-5 relative">
+    <div className="p-5 relative h-[100%] max-w-[60rem] m-auto">
       <h1 className="text-slate-800 text-2xl font-bold tracking-wide">
         Bookmark it.
       </h1>
@@ -60,7 +59,7 @@ function App() {
         ClearAll={ClearAll}
       />
 
-      <LinkList linkArr={linkArr} onRemove={onRemove} setLinkArr={setLinkArr} />
+      <LinkList onRemove={onRemove} setLinkArr={setLinkArr} linkArr={linkArr} />
     </div>
   );
 }

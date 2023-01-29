@@ -47,6 +47,8 @@ function EditLinkModal({ link, handleClose, setLinkArr, linkArr, index }) {
         viewport={{ once: true }}
       >
         <h2 className="text-lg font-medium mb-4">Edit Bookmark</h2>
+
+        {/* Inputs */}
         <div className="mb-4">
           <label className="block text-gray-800 font-medium mb-2">Link</label>
           <input
@@ -67,6 +69,8 @@ function EditLinkModal({ link, handleClose, setLinkArr, linkArr, index }) {
             onChange={(e) => setCurrentLinkTitle(e.target.value)}
           />
         </div>
+
+        {/* Buttons */}
         <div className="flex justify-end">
           <button
             className="bg-transparent border-2 border-slate-300 btn-modal"
@@ -78,7 +82,7 @@ function EditLinkModal({ link, handleClose, setLinkArr, linkArr, index }) {
             className="bg-slate-900 text-slate-50 btn-modal"
             onClick={() => handleSave(currentLink, currentLinkTitle, index)}
           >
-            Save{" "}
+            Save
           </button>
         </div>
       </motion.div>

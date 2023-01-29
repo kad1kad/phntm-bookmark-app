@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 function EditLinkModal({ link, handleClose, setLinkArr, linkArr, index }) {
   // State for current link and link title
   const [currentLink, setCurrentLink] = useState(
-    !link.link.includes("https://") && !link.link.includes("http://")
+    !link.link.includes("https://") || !link.link.includes("http://")
       ? link.link.replace("//", "")
       : link.link
   );
@@ -14,16 +14,20 @@ function EditLinkModal({ link, handleClose, setLinkArr, linkArr, index }) {
   // Function to handle updating the link and link title
   const handleSave = (updatedLink, updatedLinkTitle, index) => {
     // update the links in linkArr
+    let newLink = updatedLink;
+    if (!newLink.startsWith("http://") && !newLink.startsWith("https://")) {
+      newLink = "//" + updatedLink;
+    }
+    if (!newLink.includes("://")) {
+      newLink = newLink.replace(":", "://");
+    }
     const newLinkArr = [...linkArr];
     newLinkArr[index] = {
-      link:
-        !updatedLink.includes("https://") && !updatedLink.includes("http://")
-          ? "//" + updatedLink
-          : updatedLink,
+      link: newLink,
       linkTitle: updatedLinkTitle,
     };
     setLinkArr(newLinkArr);
-    setCurrentLink(updatedLink);
+    setCurrentLink(newLink);
     setCurrentLinkTitle(updatedLinkTitle);
 
     // update local storage

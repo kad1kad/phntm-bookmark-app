@@ -16,19 +16,25 @@ function LinkList({ linkArr, setLinkArr }) {
   const linksPerPage = 20;
 
   const onRemove = (index) => {
-    // Calculate the actual index of the link within the linkArr
-    const actualIndex = (currentPage - 1) * linksPerPage + index;
-
     // Remove link from array
-    const newLinkArr = linkArr.filter((link, i) => i !== actualIndex);
+    const newLinkArr = linkArr.filter((link, i) => i !== index);
     setLinkArr(newLinkArr);
     let links = JSON.parse(localStorage.getItem("prevLinkArr"));
-    links.splice(actualIndex, 1);
+    links.splice(index, 1);
     localStorage.setItem("prevLinkArr", JSON.stringify(links));
+
     // Check if the current page should be updated
-    if ((currentPage - 1) * linksPerPage >= newLinkArr.length) {
+    if (
+      newLinkArr.length / linksPerPage < currentPage &&
+      newLinkArr.length % linksPerPage === 0
+    ) {
+      setCurrentPage(currentPage - 1);
+    } else if (
+      index >= (currentPage - 1) * linksPerPage &&
+      index < currentPage * linksPerPage
+    ) {
       // ensure that the current page is not less than 1
-      setCurrentPage(Math.max(currentPage - 1, 1));
+      setCurrentPage(Math.max(currentPage, 1));
     }
   };
 

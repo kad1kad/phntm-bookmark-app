@@ -10,9 +10,12 @@ const Pagination = ({ currentPage, setCurrentPage, linkArr, linksPerPage }) => {
     }
   };
 
-  const handleKeyDown = (e, pageNum) => {
-    if (e.key === "Enter") {
-      setCurrentPage(pageNum);
+  // avoid page number greater than total number of pages
+  const handlePageUp = () => {
+    if (currentPage >= Math.ceil(linkArr.length / linksPerPage)) {
+      setCurrentPage(Math.ceil(linkArr.length / linksPerPage));
+    } else {
+      setCurrentPage(currentPage + 1);
     }
   };
 
@@ -22,16 +25,17 @@ const Pagination = ({ currentPage, setCurrentPage, linkArr, linksPerPage }) => {
         {"<"}
       </button>
 
-      <div className="mx-10">
+      <div className="mx-5">
         {Array.from(
           { length: Math.ceil(linkArr.length / linksPerPage) },
           (_, i) => (
             <button
               aria-label={`go to page ${i + 1}`}
-              className={`${currentPage === i + 1 ? "font-bold" : ""}`}
+              className={`${"mx-1"} ${
+                currentPage === i + 1 ? "font-bold" : ""
+              }`}
               key={i}
               onClick={() => setCurrentPage(i + 1)}
-              onKeyDown={(e) => handleKeyDown(e, i + 1)}
               tabIndex="0"
             >
               {i + 1}
@@ -39,11 +43,7 @@ const Pagination = ({ currentPage, setCurrentPage, linkArr, linksPerPage }) => {
           )
         )}
       </div>
-      <button
-        aria-label="next page"
-        onClick={() => setCurrentPage(currentPage + 1)}
-        tabIndex="0"
-      >
+      <button aria-label="next page" onClick={handlePageUp} tabIndex="0">
         {">"}
       </button>
     </div>

@@ -3,7 +3,11 @@ import { motion } from "framer-motion";
 
 function EditLinkModal({ link, handleClose, setLinkArr, linkArr, index }) {
   // State for current link and link title
-  const [currentLink, setCurrentLink] = useState(link.link.replace("//", ""));
+  const [currentLink, setCurrentLink] = useState(
+    !link.link.includes("https://") && !link.link.includes("http://")
+      ? link.link.replace("//", "")
+      : link.link
+  );
 
   const [currentLinkTitle, setCurrentLinkTitle] = useState(link.linkTitle);
 
@@ -12,7 +16,10 @@ function EditLinkModal({ link, handleClose, setLinkArr, linkArr, index }) {
     // update the links in linkArr
     const newLinkArr = [...linkArr];
     newLinkArr[index] = {
-      link: "//" + updatedLink,
+      link:
+        !updatedLink.includes("https://") && !updatedLink.includes("http://")
+          ? "//" + updatedLink
+          : updatedLink,
       linkTitle: updatedLinkTitle,
     };
     setLinkArr(newLinkArr);

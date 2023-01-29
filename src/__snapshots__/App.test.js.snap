@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination component renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="flex absolute bottom-5"
+    role="group"
+  >
+    <button
+      aria-label="previous page"
+      tabindex="0"
+    >
+      &lt;
+    </button>
+    <div
+      class="mx-5"
+    />
+    <button
+      aria-label="next page"
+      tabindex="0"
+    >
+      &gt;
+    </button>
+  </div>
+</DocumentFragment>
+`;

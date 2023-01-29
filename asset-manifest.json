@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/phntm-bookmark-app/static/css/main.63d0b3c3.css",
-    "main.js": "/phntm-bookmark-app/static/js/main.c6384853.js",
+    "main.css": "/phntm-bookmark-app/static/css/main.6c20532a.css",
+    "main.js": "/phntm-bookmark-app/static/js/main.04fa98fd.js",
     "static/js/787.b23f7d9c.chunk.js": "/phntm-bookmark-app/static/js/787.b23f7d9c.chunk.js",
     "index.html": "/phntm-bookmark-app/index.html",
-    "main.63d0b3c3.css.map": "/phntm-bookmark-app/static/css/main.63d0b3c3.css.map",
-    "main.c6384853.js.map": "/phntm-bookmark-app/static/js/main.c6384853.js.map",
+    "main.6c20532a.css.map": "/phntm-bookmark-app/static/css/main.6c20532a.css.map",
+    "main.04fa98fd.js.map": "/phntm-bookmark-app/static/js/main.04fa98fd.js.map",
     "787.b23f7d9c.chunk.js.map": "/phntm-bookmark-app/static/js/787.b23f7d9c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.63d0b3c3.css",
-    "static/js/main.c6384853.js"
+    "static/css/main.6c20532a.css",
+    "static/js/main.04fa98fd.js"
   ]
 }

@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/phntm-bookmark-app/static/css/main.6c20532a.css",
-    "main.js": "/phntm-bookmark-app/static/js/main.04fa98fd.js",
+    "main.js": "/phntm-bookmark-app/static/js/main.a3df1f98.js",
     "static/js/787.b23f7d9c.chunk.js": "/phntm-bookmark-app/static/js/787.b23f7d9c.chunk.js",
     "index.html": "/phntm-bookmark-app/index.html",
     "main.6c20532a.css.map": "/phntm-bookmark-app/static/css/main.6c20532a.css.map",
-    "main.04fa98fd.js.map": "/phntm-bookmark-app/static/js/main.04fa98fd.js.map",
+    "main.a3df1f98.js.map": "/phntm-bookmark-app/static/js/main.a3df1f98.js.map",
     "787.b23f7d9c.chunk.js.map": "/phntm-bookmark-app/static/js/787.b23f7d9c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6c20532a.css",
-    "static/js/main.04fa98fd.js"
+    "static/js/main.a3df1f98.js"
   ]
 }

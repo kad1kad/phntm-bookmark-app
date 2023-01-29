@@ -15,11 +15,6 @@ function App() {
 
   const [error, setError] = useState("");
 
-  async function exists(link) {
-    const result = await fetch(link, { method: "HEAD" });
-    return result.ok;
-  }
-
   async function handleSubmit(e) {
     e.preventDefault();
     // Check if link is reachable
@@ -27,11 +22,11 @@ function App() {
       if (await isReachable(link)) {
         localStorage.setItem(
           "prevLinkArr",
-          JSON.stringify([...linkArr, { link: link, linkTitle }])
+          JSON.stringify([...linkArr, { link: `//${link}`, linkTitle }])
         );
         setLinkArr((prevLinkArr) => [
           ...prevLinkArr,
-          { link: link, linkTitle },
+          { link: `//${link}`, linkTitle },
         ]);
 
         setError("");

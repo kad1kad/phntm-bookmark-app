@@ -1,3 +1,4 @@
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import React from "react";
 
 const Pagination = ({ currentPage, setCurrentPage, linkArr, linksPerPage }) => {
@@ -10,25 +11,42 @@ const Pagination = ({ currentPage, setCurrentPage, linkArr, linksPerPage }) => {
     }
   };
 
+  const handleKeyDown = (e, pageNum) => {
+    if (e.key === "Enter") {
+      setCurrentPage(pageNum);
+    }
+  };
+
   return (
-    <div className="flex absolute bottom-5">
-      <button onClick={handlePageDown}>Previous</button>
+    <div className="flex absolute bottom-5" role="group">
+      <button aria-label="previous page" onClick={handlePageDown} tabIndex="0">
+        {"<"}
+      </button>
 
       <div className="mx-10">
         {Array.from(
           { length: Math.ceil(linkArr.length / linksPerPage) },
           (_, i) => (
             <button
-              className={`mx-5 ${currentPage === i + 1 ? "text-red-500" : ""}`}
+              aria-label={`go to page ${i + 1}`}
+              className={`${currentPage === i + 1 ? "font-bold" : ""}`}
               key={i}
               onClick={() => setCurrentPage(i + 1)}
+              onKeyDown={(e) => handleKeyDown(e, i + 1)}
+              tabIndex="0"
             >
               {i + 1}
             </button>
           )
         )}
       </div>
-      <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+      <button
+        aria-label="next page"
+        onClick={() => setCurrentPage(currentPage + 1)}
+        tabIndex="0"
+      >
+        {">"}
+      </button>
     </div>
   );
 };

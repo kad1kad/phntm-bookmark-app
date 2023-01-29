@@ -15,40 +15,23 @@ function App() {
 
   const [error, setError] = useState("");
 
-  async function urlExists(link) {
-    try {
-      const absoluteLink = "//" + link;
-      const result = await fetch(absoluteLink, { method: "HEAD" });
-      if (!result.ok) return false;
-      if (result.status >= 200 && result.status < 300) return true;
-      return false;
-    } catch (err) {
-      console.error(err);
-      return false;
-    }
+  async function exists(link) {
+    const result = await fetch(link, { method: "HEAD" });
+    return result.ok;
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    // Validate input as a URL
-    const regex =
-      /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
-    if (!regex.test(link)) {
-      setError("Link is not a valid URL.");
-      return;
-    }
-
+    // Check if link is reachable
     try {
-      const reachable = await urlExists(link);
-      if (reachable) {
+      if (await isReachable(link)) {
         localStorage.setItem(
           "prevLinkArr",
-          JSON.stringify([...linkArr, { link: `//${link}`, linkTitle }])
+          JSON.stringify([...linkArr, { link: link, linkTitle }])
         );
         setLinkArr((prevLinkArr) => [
           ...prevLinkArr,
-          { link: `//${link}`, linkTitle },
+          { link: link, linkTitle },
         ]);
 
         setError("");
@@ -57,6 +40,7 @@ function App() {
       } else {
         throw new Error(`Error: ${link} is not reachable.`);
       }
+      // Catch error
     } catch (err) {
       console.error(err);
       setError("Link is not valid.");

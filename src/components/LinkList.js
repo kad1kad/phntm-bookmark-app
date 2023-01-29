@@ -1,4 +1,6 @@
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
+
 import LinkItem from "./LinkItem";
 import Pagination from "./Pagination";
 
@@ -11,15 +13,22 @@ function LinkList({ linkArr, setLinkArr }) {
   // start at page 1
   const [currentPage, setCurrentPage] = useState(1);
 
-  const linksPerPage = 3;
+  const linksPerPage = 20;
 
   const onRemove = (index) => {
+    // Calculate the actual index of the link within the linkArr
+    const actualIndex = (currentPage - 1) * linksPerPage + index;
+
     // Remove link from array
-    const newLinkArr = linkArr.filter((link, i) => i !== index);
+    const newLinkArr = linkArr.filter((link, i) => i !== actualIndex);
     setLinkArr(newLinkArr);
+    let links = JSON.parse(localStorage.getItem("prevLinkArr"));
+    links.splice(actualIndex, 1);
+    localStorage.setItem("prevLinkArr", JSON.stringify(links));
     // Check if the current page should be updated
     if ((currentPage - 1) * linksPerPage >= newLinkArr.length) {
-      setCurrentPage(currentPage - 1);
+      // ensure that the current page is not less than 1
+      setCurrentPage(Math.max(currentPage - 1, 1));
     }
   };
 
@@ -30,23 +39,41 @@ function LinkList({ linkArr, setLinkArr }) {
 
   return (
     <div>
-      {currentLinks.map((link, index) => (
-        <LinkItem
-          linkArr={linkArr}
-          onRemove={onRemove}
-          link={link}
-          index={index}
-        />
-      ))}
-
-      <div className="flex justify-center">
-        <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          linkArr={linkArr}
-          linksPerPage={linksPerPage}
-        />
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 mb-10 mt-5">
+        {/* animate exit */}
+        <AnimatePresence>
+          {currentLinks.map((link, index) => (
+            <motion.div
+              key={`${link.id}-${index}`}
+              exit={{ opacity: 0, y: -200 }}
+              transition={{ type: "spring", stiffness: 30 }}
+            >
+              <LinkItem
+                linkArr={linkArr}
+                setLinkArr={setLinkArr}
+                onRemove={onRemove}
+                link={link}
+                index={index}
+                key={index}
+                currentPage={currentPage}
+                linksPerPage={linksPerPage}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
+
+      {/* hide pagination if no link */}
+      {linkArr.length > 0 && (
+        <div className="flex justify-center">
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            linkArr={linkArr}
+            linksPerPage={linksPerPage}
+          />
+        </div>
+      )}
     </div>
   );
 }

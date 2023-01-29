@@ -1,4 +1,3 @@
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import React from "react";
 
 const Pagination = ({ currentPage, setCurrentPage, linkArr, linksPerPage }) => {

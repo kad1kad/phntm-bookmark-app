@@ -1,22 +1,15 @@
 import React from "react";
 
-function Form({
-  linkTitle,
-  setLinkTitle,
-  link,
-  setLink,
-  handleSubmit,
-  ClearAll,
-}) {
+function Form({ linkTitle, setLinkTitle, link, setLink, handleSubmit }) {
   return (
     <div className="mt-10">
       <form
-        className="flex justify-between"
+        className="flex justify-between gap-2"
         action="submit"
         onSubmit={handleSubmit}
       >
         <input
-          className="h-10 w-[30%] mr-2 pl-1 border-gray-100 border-2 rounded-2xl placeholder:text-sm"
+          className="w-full input-field border-slate-200"
           type="text"
           required
           placeholder="URL"
@@ -24,7 +17,7 @@ function Form({
           onChange={(e) => setLink(e.target.value)}
         />
         <input
-          className="h-10 w-[30%] border-gray-100 pl-1  border-2 rounded-2xl placeholder:text-sm"
+          className=" w-full input-field border-slate-200"
           type="text"
           required
           placeholder="Title"
@@ -33,14 +26,12 @@ function Form({
         />
 
         <button
-          className="bg-slate-900 text-slate-50 font-light tracking-wider w-[33%] h-10 rounded-3xl"
+          className="bg-slate-900 text-slate-100 tracking-wider w-full h-12 rounded-3xl"
           type="submit"
         >
           Add
         </button>
       </form>
-
-      {/* <button onClick={ClearAll}>Delete All</button> */}
     </div>
   );
 }

@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  height: 100%;
-}
-
 @layer components {
   .input-field {
     @apply border-gray-300 pl-2  border-2 rounded-3xl placeholder:text-sm h-12 bg-slate-100;

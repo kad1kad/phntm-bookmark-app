@@ -28,6 +28,7 @@ function Form({ linkTitle, setLinkTitle, link, setLink, handleSubmit }) {
         <button
           className="bg-slate-900 text-slate-100 tracking-wider w-full h-12 rounded-3xl"
           type="submit"
+          aria-label="Add bookmark"
         >
           Add
         </button>

@@ -1,6 +1,7 @@
 import isReachable from "is-reachable";
 import { useState } from "react";
 import DeleteAllLinks from "./components/DeleteAllLinks";
+import Error from "./components/Error";
 import Form from "./components/Form";
 import LinkList from "./components/LinkList";
 
@@ -48,7 +49,7 @@ function App() {
         Bookmark it.
       </h1>
 
-      <p className="absolute top-12 text-red-500"> {error} </p>
+      <Error error={error} />
 
       <Form
         link={link}
